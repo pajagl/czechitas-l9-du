@@ -1,24 +1,22 @@
 // tady je místo pro náš program
 
 // Auto
-const auto = document.querySelector('#auto');
+const auto = document.querySelector('.auto');
 
-const move = (event) => {
-    const tlacitko = event.key;
+let moveBy = 20;
+window.addEventListener('load', () => {
+    auto.style.position = 'absolute';
+    auto.style.left = 0;
+    auto.style.top = 20;
+});
 
-    if(tlacitko === 'ArrowRight') {
-        auto.style.transform = 'rotateY(0deg)';
-        auto.style.animation = 'to-right 1s forwards';
+window.addEventListener('keyup', (e) => {
+    switch (e.key) {
+        case 'ArrowLeft':
+            auto.style.left = parseInt(auto.style.left) - moveBy + 'px';
+            break;
+        case 'ArrowRight':
+            auto.style.left = parseInt(auto.style.left) + moveBy + 'px';
+            break;
     }
-
-    if(tlacitko === 'ArrowLeft') {
-        auto.style.transform = 'rotateY(180deg)';
-        auto.style.animation = 'to-left 1s forwards';
-    }
-  
-    //console.log(event);
-    console.log('keydown');
-    console.log(tlacitko);
-}
-
-window.addEventListener('keydown', move);
+});
