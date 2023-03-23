@@ -1,29 +1,24 @@
 // tady je místo pro náš program
 
-// 1 Catering
+// Auto
+const auto = document.querySelector('#auto');
 
-const justFood = (kolikLidi) => {
-	return `catering od Just Food pro ${kolikLidi} lidí za ${Math.round(
-		kolikLidi * 100
-	)} Kč`
-}
-const yourMama = (koliktLidi) => {
-	return `catering od Your Mama pro ${kolikLidi} lidí za ${Math.round(
-		pocetLidi * 500
-	)} Kč`
-}
-const flavourHaven = (kolikLidi) => {
-	return `catering od Flavour Haven pro ${kolikLidi} lidí za ${Math.round(
-		kolikLidi * 1000
-	)} Kč`
+const move = (event) => {
+    const tlacitko = event.key;
+
+    if(tlacitko === 'ArrowRight') {
+        auto.style.transform = 'rotateY(0deg)';
+        auto.style.animation = 'to-right 1s forwards';
+    }
+
+    if(tlacitko === 'ArrowLeft') {
+        auto.style.transform = 'rotateY(180deg)';
+        auto.style.animation = 'to-left 1s forwards';
+    }
+  
+    //console.log(event);
+    console.log('keydown');
+    console.log(tlacitko);
 }
 
-const createEvent = (nazevUdalosti, pocetLidi, catering) => {
-	return `Událost ${nazevUdalosti} s ${catering(pocetLidi)}`
-}
-
-document.body.innerHTML += createEvent(
-	'Inaugurace prezidenta',
-	100,
-	flavourHaven
-)
+window.addEventListener('keydown', move);
